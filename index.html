@@ -1,10 +1,857 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>こんにちは</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サウンドステーションあどがわ - 英会話教室</title>
+    <!-- Google Fontsの読み込み -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;900&family=Fredoka+One&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 全体の基本スタイル --- */
+        :root {
+            --brand-color: #E55C6E; /* ロゴのピンク系 */
+            --primary-blue: #00A9CE; /* ボタンなどの青 */
+            --bg-pink: #FDF0F1;
+            --bg-blue: #EFF9FB;
+            --bg-green: #F1FAF3;
+            --text-dark: #333333;
+            --text-light: #555555;
+            /* 日本語ロゴも見栄えが良くなるように太字(900)を読み込み */
+            --font-jp: 'M PLUS Rounded 1c', sans-serif;
+            --font-en-header: 'Fredoka One', cursive;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-jp);
+            color: var(--text-dark);
+            background-color: #FFFFFF;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- 共通のセクションスタイル --- */
+        .section {
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            font-family: var(--font-en-header);
+            font-size: 2.5rem;
+            color: var(--brand-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .section-title p {
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title p::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 1px;
+            background-color: var(--brand-color);
+        }
+        
+        /* --- 共通のボタン --- */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-blue);
+            color: #fff;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-align: center;
+            transition: opacity 0.3s;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        /* --- 画像のスタイル --- */
+        .content-img {
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* --- 右側の固定メニュー --- */
+        .side-contact {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--primary-blue);
+            color: #fff;
+            padding: 15px 10px;
+            writing-mode: vertical-rl;
+            border-radius: 10px 0 0 10px;
+            z-index: 100;
+            text-align: center;
+            letter-spacing: 2px;
+            transition: right 0.3s; /* 表示/非表示のアニメーション用 */
+        }
+        .side-contact a { display: block; margin-top: 15px; }
+
+
+        /* --- レスポンシブ対応 --- */
+        @media (max-width: 768px) {
+            .section { padding: 60px 0; }
+            .section-title span { font-size: 2rem; }
+            .section-title p { font-size: 0.8rem; }
+            
+            .flex-container { 
+                flex-direction: column; 
+                gap: 30px; /* flexのgapを適用 */
+            }
+            .flex-item { 
+                width: 100% !important; 
+                margin-bottom: 0; /* gapで管理するためリセット */
+            }
+            /* 最後の要素のマージンを削除 */
+            .flex-item:last-child { margin-bottom: 0; }
+            
+            .flex-reverse { flex-direction: column-reverse; }
+
+            /* 右側固定メニューを非表示 */
+            .side-contact {
+                right: -100px; /* 画面外に移動して非表示 */
+            }
+        }
+    </style>
 </head>
 <body>
-  <p>こんにちは</p>
+
+<!-- ここから各セクションのコードを挿入していきます -->
+<!-- 2. Header Section -->
+<style>
+    .header {
+        padding: 20px 0;
+        background-color: #fff;
+    }
+    .header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .header-logo-wrapper {
+        text-align: left;
+    }
+    .header-logo {
+        font-family: var(--font-jp);
+        font-weight: 900; /* 太字にしてロゴらしく */
+        font-size: 1.8rem; /* 日本語に合わせてサイズ調整 */
+        background: linear-gradient(90deg, #F37A7C, #FDCB6E, #90EE90, #87CEEB, #DDA0DD);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .header-info {
+        font-size: 0.8rem;
+        text-align: left;
+    }
+    .header-nav ul {
+        display: flex;
+        list-style: none;
+        gap: 25px;
+    }
+    .header-nav a {
+        font-size: 0.9rem;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+    .header-nav a:hover {
+        color: var(--primary-blue);
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 768px) {
+        .header .container {
+            flex-direction: column;
+            gap: 20px;
+        }
+        .header-logo-wrapper {
+            text-align: center;
+        }
+        .header-logo {
+            font-size: 1.5rem;
+        }
+        .header-nav ul {
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+        /* ハンバーガーメニューを実装しない場合、ナビを非表示にする選択肢も
+        .header-nav {
+            display: none;
+        } */
+    }
+</style>
+
+<header class="header">
+    <div class="container">
+        <div class="header-logo-wrapper">
+            <a href="#" class="header-logo">サウンドステーションあどがわ</a>
+            <div class="header-info">滋賀県高島市のキッズ英会話教室</div>
+        </div>
+        <nav class="header-nav">
+            <ul>
+                <li><a href="#about">教室について</a></li>
+                <li><a href="#lesson-price">クラス紹介&料金</a></li>
+                <li><a href="#online-lesson">オンラインレッスン</a></li>
+                <li><a href="#news">お知らせ</a></li>
+                <li><a href="#">Q&A</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<!-- 3. Hero Section -->
+<style>
+    .hero {
+        padding: 60px 0;
+        position: relative;
+        overflow: hidden;
+        background-color: var(--bg-pink);
+    }
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        border-radius: 20px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        overflow: hidden;
+    }
+    .hero-image {
+        background-image: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center;
+        height: 500px;
+        position: relative;
+    }
+    .hero-text {
+        position: absolute;
+        top: 40px;
+        left: 40px;
+    }
+    .hero-text h1 {
+        font-family: var(--font-en-header);
+        color: #fff;
+        font-size: 3.5rem;
+        line-height: 1.2;
+        padding: 10px 20px;
+        background-color: var(--brand-color);
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+    .hero-topics {
+        background-color: #fff;
+        padding: 15px 30px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    .topics-label {
+        font-family: var(--font-en-header);
+        font-size: 1.5rem;
+        color: var(--brand-color);
+    }
+    .topics-item {
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-size: 0.9rem; /* 少し小さく */
+    }
+    .topics-item a {
+        transition: color 0.3s;
+    }
+    .topics-item a:hover {
+        color: var(--primary-blue);
+    }
+    .topics-item .arrow {
+        color: var(--primary-blue);
+        font-weight: bold;
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 768px) {
+        .hero { padding: 30px 0; }
+        .hero-image { height: 350px; }
+        .hero-text {
+            top: 20px;
+            left: 20px;
+        }
+        .hero-text h1 {
+            font-size: 2.2rem;
+            padding: 5px 15px;
+        }
+        .hero-topics {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
+            gap: 10px;
+        }
+        .topics-item {
+            font-size: 0.8rem;
+            gap: 10px;
+            flex-wrap: wrap; /* 長いタイトルで折り返すように */
+        }
+    }
+</style>
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-image">
+                <div class="hero-text">
+                    <h1>Hello</h1>
+                    <h1>Everyone!!</h1>
+                </div>
+            </div>
+            <div class="hero-topics">
+                <span class="topics-label">Topics</span>
+                <div class="topics-item">
+                    <span>2025.06.21</span>
+                    <a href="#">2025年度 サマースクール参加者募集開始のご案内</a>
+                    <span class="arrow">▶</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- 4. About Section -->
+<style>
+    .about {
+        background-color: var(--bg-pink);
+    }
+    .about .container {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        position: relative;
+        z-index: 2;
+    }
+    .about-content { width: 50%; }
+    .about-image { width: 50%; }
+    
+    .about-heading {
+        font-size: 2rem;
+        color: var(--brand-color);
+        font-weight: bold;
+        line-height: 1.5;
+        margin-bottom: 25px;
+    }
+    .about-text {
+        line-height: 1.8;
+        margin-bottom: 30px;
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 768px) {
+        .about .section-title {
+            text-align: center; /* スマホでは中央寄せに戻す */
+        }
+        .about-heading {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        .about-text {
+            font-size: 0.9rem;
+        }
+        .about .flex-item:last-child { /* ボタンのラッパー */
+            text-align: center;
+        }
+    }
+</style>
+
+<section id="about" class="section about">
+    <div class="container flex-container">
+        <div class="about-image flex-item">
+            <img src="https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?q=80&w=1954&auto=format&fit=crop" alt="子供たちが学ぶ様子" class="content-img">
+        </div>
+        <div class="about-content flex-item">
+            <div class="section-title" style="text-align: left; margin-bottom: 20px;">
+                <span>About</span>
+                <p>サウンドステーションあどがわについて</p>
+            </div>
+            <h2 class="about-heading">「英語を学ぶ」ではなく<br>「英語を話す」場所</h2>
+            <p class="about-text">
+                サウンドステーションあどがわでは温かく、英語が溢れ、英語が楽しい！と感じてもらえるような英語教育をしています。<br>
+                子供たちの好奇心をくすぐるような、楽しく英語で過ごす時間をご提供いたします。
+            </p>
+            <a href="#" class="btn">View more ></a>
+        </div>
+    </div>
+</section>
+<!-- 5. Lesson & Price Section -->
+<style>
+    .lesson-price {
+        background-color: var(--bg-blue);
+    }
+    .lesson-price .container {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        position: relative;
+        z-index: 2;
+    }
+    .lesson-price-content { width: 50%; }
+    .lesson-price-image { width: 50%; }
+
+    .lesson-price-heading {
+        font-size: 2rem;
+        color: var(--primary-blue);
+        font-weight: bold;
+        line-height: 1.5;
+        margin-bottom: 25px;
+    }
+    .lesson-price-text {
+        line-height: 1.8;
+        margin-bottom: 30px;
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 768px) {
+        .lesson-price .section-title {
+            text-align: center;
+        }
+        .lesson-price-heading {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        .lesson-price-text {
+            font-size: 0.9rem;
+        }
+        .lesson-price .flex-item:first-child { /* ボタンのラッパー */
+            text-align: center;
+        }
+    }
+</style>
+
+<section id="lesson-price" class="section lesson-price">
+    <div class="container flex-container flex-reverse">
+        <div class="lesson-price-content flex-item">
+            <div class="section-title" style="text-align: left; margin-bottom: 20px;">
+                <span>Lesson & Price</span>
+                <p>レッスン紹介&料金</p>
+            </div>
+            <h2 class="lesson-price-heading">学びに合わせて選べる<br>4つのレッスン</h2>
+            <p class="lesson-price-text">
+                お友達と一緒に英語を話す時間を過ごしたり、ご自身のペースに合わせた個別のオンラインレッスンなど、それぞれのライフスタイルに合わせたレッスンをご用意しております。
+            </p>
+            <a href="#" class="btn">View more ></a>
+        </div>
+        <div class="lesson-price-image flex-item">
+            <img src="https://images.unsplash.com/photo-1594394479599-8134b221a719?q=80&w=2070&auto=format&fit=crop" alt="教室で先生と話す子供たち" class="content-img">
+        </div>
+    </div>
+</section>
+<!-- 6. Online Lesson Section -->
+<style>
+    .online-lesson {
+        background-color: var(--bg-green);
+    }
+    .online-lesson .container {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        position: relative;
+        z-index: 2;
+    }
+    .online-lesson-content { width: 50%; }
+    .online-lesson-image { width: 50%; }
+
+    .online-lesson-heading {
+        font-size: 2rem;
+        color: #55a66a;
+        font-weight: bold;
+        line-height: 1.5;
+        margin-bottom: 25px;
+    }
+    .online-lesson-text {
+        line-height: 1.8;
+        margin-bottom: 30px;
+    }
+
+    /* レスポンシブ */
+     @media (max-width: 768px) {
+        .online-lesson .section-title {
+            text-align: center;
+        }
+        .online-lesson-heading {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        .online-lesson-text {
+            font-size: 0.9rem;
+        }
+        .online-lesson .flex-item:first-child { /* ボタンのラッパー */
+            text-align: center;
+        }
+    }
+</style>
+
+<section id="online-lesson" class="section online-lesson">
+    <div class="container flex-container">
+        <div class="online-lesson-content flex-item">
+            <div class="section-title" style="text-align: left; margin-bottom: 20px;">
+                <span>Online Lesson</span>
+                <p>オンラインレッスン</p>
+            </div>
+            <h2 class="online-lesson-heading">空いた時間に楽しみながら<br>気軽にレッスン</h2>
+            <p class="online-lesson-text">
+                サウンドステーションあどがわでは温かく、英語が溢れ、そして英語が楽しい！と感じてもらえるような英語教育をしています。<br>
+                大切なお子様の成長していく姿を保護者の方と共に見守ります。
+            </p>
+            <a href="#" class="btn">View more ></a>
+        </div>
+        <div class="online-lesson-image flex-item">
+            <img src="https://images.unsplash.com/photo-1599643477891-53479b183679?q=80&w=1974&auto=format&fit=crop" alt="オンラインで学ぶ女の子" class="content-img">
+        </div>
+    </div>
+</section>
+<!-- 7. News Section -->
+<style>
+    .news {
+        background-color: #fff;
+    }
+    .news-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+    .news-item {
+        display: flex;
+        gap: 20px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+    }
+    .news-item-img {
+        width: 120px;
+        height: 120px;
+        flex-shrink: 0;
+        background: linear-gradient(90deg, #F37A7C, #FDCB6E);
+        color: #fff;
+        border-radius: 10px;
+        /* 日本語ロゴ用にスタイル調整 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-family: var(--font-jp);
+        font-weight: 700;
+        font-size: 1rem;
+        line-height: 1.4;
+        padding: 5px;
+    }
+    .news-item-content .date {
+        font-size: 0.9rem;
+        color: var(--text-light);
+        margin-bottom: 5px;
+    }
+    .news-item-content .title {
+        font-weight: bold;
+        margin-bottom: 10px;
+        transition: color 0.3s;
+    }
+    .news-item-content .title:hover {
+        color: var(--primary-blue);
+    }
+    .news-item-content .excerpt {
+        font-size: 0.9rem;
+        color: var(--text-light);
+    }
+    .news .view-more-wrapper {
+        text-align: center;
+    }
+
+    @media (max-width: 768px) {
+        .news-grid { grid-template-columns: 1fr; }
+        .news-item { gap: 15px; }
+        .news-item-img {
+            width: 80px;
+            height: 80px;
+            font-size: 0.8rem;
+        }
+        .news-item-content .title {
+            font-size: 0.9rem;
+        }
+        .news-item-content .excerpt {
+            font-size: 0.8rem;
+        }
+    }
+</style>
+
+<section id="news" class="section news">
+    <div class="container">
+        <div class="section-title">
+            <span>News</span>
+            <p>お知らせ</p>
+        </div>
+        <div class="news-grid">
+            <article class="news-item">
+                <div class="news-item-img">サウンドステーションあどがわ</div>
+                <div class="news-item-content">
+                    <p class="date">2025.06.21</p>
+                    <h3 class="title"><a href="#">2025年度 サマースクール参加者募集開始のご案内</a></h3>
+                    <p class="excerpt">2025年度、サマースクール募集、スタートいたしました！今…</p>
+                </div>
+            </article>
+            <article class="news-item">
+                <div class="news-item-img">サウンドステーションあどがわ</div>
+                <div class="news-item-content">
+                    <p class="date">2025.04.25</p>
+                    <h3 class="title"><a href="#">2025年度第1回 英検一般受験者受け入れのお申し込みを終了いたしました。</a></h3>
+                    <p class="excerpt">定員人数に達したため、2025年度第1回英検一般受験者受け…</p>
+                </div>
+            </article>
+            <article class="news-item">
+                <div class="news-item-img">サウンドステーション
+                 あどがわ</div>
+                <div class="news-item-content">
+                    <p class="date">2025.03.24</p>
+                    <h3 class="title"><a href="#">春休み期間のお知らせ</a></h3>
+                    <p class="excerpt">2025年3月25日(火)よりスクールが春休み期間に入ります…</p>
+                </div>
+            </article>
+            <article class="news-item">
+                <div class="news-item-img">サウンドステーションあどがわ</div>
+                <div class="news-item-content">
+                    <p class="date">2025.02.17</p>
+                    <h3 class="title"><a href="#">〜Sコース＜50分クラス＞初心者さん向けクラス体験会のご案内〜</a></h3>
+                    <p class="excerpt">月曜日に開講中のSコースに、初心者さんクラスの開講を予定して…</p>
+                </div>
+            </article>
+        </div>
+        <div class="view-more-wrapper">
+            <a href="#" class="btn">View more ></a>
+        </div>
+    </div>
+</section>
+<!-- 8. Footer and Fixed Elements -->
+<style>
+    .login-cta {
+        background-color: var(--primary-blue);
+        padding: 20px 0;
+        text-align: center;
+    }
+    .login-cta a {
+        color: #fff;
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+    .footer {
+        padding: 60px 0;
+        background-color: #f8f8f8;
+    }
+    .footer-main {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+    }
+    .footer-info .logo {
+        font-family: var(--font-jp);
+        font-weight: 900;
+        font-size: 1.8rem;
+        background: linear-gradient(90deg, #F37A7C, #FDCB6E, #90EE90, #87CEEB, #DDA0DD);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 10px;
+    }
+    .footer-info .address {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    .footer-nav {
+        display: flex;
+        gap: 50px;
+    }
+    .footer-nav ul {
+        list-style: none; /* リストの点を削除 */
+    }
+    .footer-nav ul li {
+        margin-bottom: 10px;
+    }
+    .footer-nav a:hover {
+        text-decoration: underline;
+    }
+    .footer-contact {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        text-align: center;
+    }
+    .contact-btn {
+        border: 1px solid var(--primary-blue);
+        padding: 15px;
+        border-radius: 10px;
+        transition: background-color 0.3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .contact-btn:hover {
+        background-color: #e6f7fb;
+    }
+    .contact-btn.phone {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--primary-blue);
+    }
+    .contact-btn.email {
+        font-weight: bold;
+    }
+    .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 40px;
+        margin-top: 40px;
+        border-top: 1px solid #ddd;
+        font-size: 0.8rem;
+        color: var(--text-light);
+    }
+    .footer-links {
+        display: flex;
+        gap: 20px;
+    }
+    .footer-links a {
+        border: 1px solid #ccc;
+        padding: 10px 15px;
+        border-radius: 5px;
+    }
+    .footer-links a:hover {
+        background-color: #fff;
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 768px) {
+        .footer-main {
+            flex-direction: column;
+            text-align: center;
+            gap: 30px;
+        }
+        .footer-nav {
+            flex-direction: column;
+            text-align: center;
+            gap: 10px;
+        }
+        .footer-contact {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        .contact-btn.phone { font-size: 1.2rem; }
+        .contact-btn.email { font-size: 0.9rem; }
+
+        .footer-bottom {
+            flex-direction: column-reverse;
+            gap: 20px;
+            text-align: center;
+        }
+        .footer-links {
+            flex-direction: column;
+            gap: 15px;
+        }
+    }
+</style>
+
+<section class="login-cta">
+    <a href="#">保護者様専用ログインページ</a>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-main">
+            <div class="footer-info">
+                <div class="logo">サウンドステーション<br>あどがわ</div>
+                <p class="address">
+                    サウンドステーションあどがわ<br>
+                    〒520-1212 滋賀県高島市安曇川町西万木55
+                </p>
+            </div>
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="#about">教室について</a></li>
+                    <li><a href="#lesson-price">クラス紹介&料金</a></li>
+                    <li><a href="#online-lesson">オンラインレッスン</a></li>
+                    <li><a href="#">個人情報の取り扱いについて</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">アクセス</a></li>
+                    <li><a href="#news">お知らせ</a></li>
+                    <li><a href="#">Q&A</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="footer-contact">
+            <a href="tel:0740-22-2063" class="contact-btn phone">
+                📞電話はこちらへ
+            </a>
+            <a href="mailto:info@soundstation-adogawa.com" class="contact-btn email">
+                ✉️ メールでのお問い合わせはこちら
+            </a>
+        </div>
+        
+        <div class="footer-bottom">
+            <p class="copyright">© 2024 サウンドステーションあどがわ</p>
+            <div class="footer-links">
+                <a href="#">英検・準会場<br>公益財団法人 日本英語検定協会</a>
+                <a href="#">大阪市塾代助成事業参入スクール<br>参画事業者登録済</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- 固定要素 -->
+<div class="side-contact">
+    お問い合わせ
+    <a href="mailto:info@soundstation-adogawa.com">✉️</a>
+    <a href="#">📷</a> <!-- Instagramなど -->
+</div>
+
 </body>
 </html>
